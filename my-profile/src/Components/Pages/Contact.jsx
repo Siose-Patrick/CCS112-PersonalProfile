@@ -9,6 +9,7 @@ import Col from 'react-bootstrap/Col';
 export const Contact = () => {
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
+  const [submittedName, setSubmittedName] = useState(''); // New state to hold the submitted name
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -17,6 +18,8 @@ export const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // Store the name before resetting the form
+    setSubmittedName(formData.name);
     // Show modal
     setShowModal(true);
   };
@@ -95,7 +98,7 @@ export const Contact = () => {
           <Modal.Title>Message Sent</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {`Thank you, ${formData.name}! Your message has been sent to the owner! :D`}
+          {`Thank you, ${submittedName}! Your message has been sent to the owner! :D`}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleModalClose}>
