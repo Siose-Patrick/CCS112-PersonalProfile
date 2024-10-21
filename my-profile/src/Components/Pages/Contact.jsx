@@ -19,7 +19,11 @@ export const Contact = () => {
     e.preventDefault();
     // Show modal
     setShowModal(true);
-    // Clear form fields
+  };
+
+  const handleModalClose = () => {
+    // Close the modal and clear the form fields after the modal is closed
+    setShowModal(false);
     setFormData({ name: '', email: '', message: '' });
   };
 
@@ -86,7 +90,7 @@ export const Contact = () => {
         </Card>
       </div>
 
-      <Modal show={showModal} onHide={() => setShowModal(false)}>
+      <Modal show={showModal} onHide={handleModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Message Sent</Modal.Title>
         </Modal.Header>
@@ -94,13 +98,13 @@ export const Contact = () => {
           {`Thank you, ${formData.name}! Your message has been sent to the owner! :D`}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={() => setShowModal(false)}>
+          <Button variant="secondary" onClick={handleModalClose}>
             Close
           </Button>
         </Modal.Footer>
       </Modal>
     </>
   );
-}
+};
 
 export default Contact;
